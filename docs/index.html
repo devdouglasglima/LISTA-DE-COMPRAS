@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .shopping-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .item span {
+            flex-grow: 1;
+        }
+
+        .item input {
+            width: 80px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .delete-btn {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            opacity: 0.7;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .add-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .add-item input {
+            width: 60%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .add-item button {
+            width: 30%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-item button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Lista de Compras</h2>
+
+    <div class="add-item">
+        <input type="text" id="itemName" placeholder="Nome do Item">
+        <input type="number" id="itemPrice" placeholder="Preço do Item" min="0" step="0.01">
+        <button onclick="addItem()">Adicionar Item</button>
+    </div>
+
+    <ul class="shopping-list" id="shoppingList">
+        <!-- Itens serão adicionados aqui -->
+    </ul>
+
+    <div class="total">
+        Total: R$ <span id="totalPrice">0.00</span>
+    </div>
+</div>
+
+<script>
+    let totalPrice = 0;
+
+    // Função para adicionar o item à lista
+    function addItem() {
+        const itemName = document.getElementById('itemName').value;
+        const itemPrice = parseFloat(document.getElementById('itemPrice').value);
+
+        // Verificar se os valores são válidos
+        if (!itemName || isNaN(itemPrice) || itemPrice <= 0) {
+            alert("Por favor, insira um nome e um preço válido.");
+            return;
+        }
+
+        // Criar o item
+        const li = document.createElement('li');
+        li.classList.add('item');
+
+        // Adicionar nome do item
+        const span = document.createElement('span');
+        span.textContent = itemName;
+        li.appendChild(span);
+
+        // Adicionar preço do item
+        const priceInput = document.createElement('input');
+        priceInput.value = itemPrice.toFixed(2);
+        priceInput.disabled = true; // Não permite alterar o preço
+        li.appendChild(priceInput);
+
+        // Adicionar ícone de lixeira
+        const deleteBtn = document.createElement('img');
+        deleteBtn.src = 'lixo.png'; // Certifique-se de ter a imagem 'lixo.png' no mesmo diretório
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.onclick = function() {
+            deleteItem(li, itemPrice);
+        };
+        li.appendChild(deleteBtn);
+
+        // Adicionar item à lista
+        document.getElementById('shoppingList').appendChild(li);
+
+        // Limpar campos
+        document.getElementById('itemName').value = '';
+        document.getElementById('itemPrice').value = '';
+
+        // Atualizar total
+        updateTotal(itemPrice);
+    }
+
+    // Função para excluir o item da lista
+    function deleteItem(item, itemPrice) {
+        item.remove();
+        updateTotal(-itemPrice);
+    }
+
+    // Função para atualizar o total
+    function updateTotal(price) {
+        totalPrice += price;
+        document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
