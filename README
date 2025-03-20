@@ -1,16 +1,17 @@
 # Lista de Compras
 
-Este é um projeto simples de **Lista de Compras**, onde os usuários podem adicionar itens, marcar como comprados e visualizar o total das compras. O aplicativo permite ao usuário interagir com a lista e acompanhar o progresso das compras, tornando a experiência mais organizada e prática.
+Este é o projeto da **Lista de Compras**, onde os usuários podem adicionar itens, marcar como comprados e visualizar o total gasto.
 
-## Tecnologias Utilizadas
-- **HTML**: Estrutura básica da página.
-- **CSS**: Estilo e layout da aplicação.
-- **JavaScript**: Funcionalidades interativas, como adicionar, marcar e excluir itens da lista.
-- **LocalStorage (opcional)**: Para salvar a lista de compras no navegador e mantê-la após recarregar a página.
+Acesse o projeto clicando no link abaixo:
 
-## Funcionalidades
-- **Adicionar itens**: Permite que o usuário adicione itens à lista de compras.
-- **Marcar como comprado**: Os itens podem ser marcados como comprados com um simples clique.
-- **Excluir itens**: Itens podem ser removidos da lista.
-- **Calcular o total**: A lista calcula automaticamente o total dos itens adicionados.
-- **Responsividade**: A interface foi projetada para funcionar bem em dispositivos móveis e desktops.
+[Lista de Compras - GitHub Pages](https://devdouglasglima.github.io/LISTA-DE-COMPRAS/)
+
+## Como funciona:
+- Adicione itens à sua lista de compras.
+- Marque os itens como comprados à medida que avança.
+- O total será calculado automaticamente.
+
+## Tecnologias Usadas:
+- HTML
+- CSS
+- JavaScript
